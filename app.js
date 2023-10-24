@@ -28,6 +28,22 @@ function playRound(playerSelection, computerSelection){
     return result;
 }
 
+function winner(player, computer) {
+    if (player === 5) {
+        rock.disabled =true;
+        scissors.disabled = true;
+        paper.disabled = true;
+        return "Player wins the game!";
+        
+    }
+    if (computer === 5) {
+        rock.disabled =true;
+        scissors.disabled = true;
+        paper.disabled = true;
+        return "Computer wins the game!";
+    }
+}
+
 
 
 const rock = document.querySelector('#rock');
@@ -35,22 +51,36 @@ const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
 const result = document.querySelector('#results');
 const score = document.querySelector('#score');
+const finalWinner = document.querySelector('#winner');
 
 let playerPoints = 0;
 let computerPoints = 0;
 
-rock.addEventListener('click',() => {
-    result.textContent = playRound('rock', getComputerChoice());
-    score.textContent = `Score: ${playerPoints}:${computerPoints}`
-});
-paper.addEventListener('click', () => {
-    result.textContent = playRound('paper', getComputerChoice());
-    score.textContent = `Score: ${playerPoints}:${computerPoints}`
-});
-scissors.addEventListener('click', () => {
-    result.textContent = playRound('scissors', getComputerChoice());
-    score.textContent = `Score: ${playerPoints}:${computerPoints}`
-});
+
+    rock.addEventListener('click',() => {
+        result.textContent = playRound('rock', getComputerChoice());
+        score.textContent = `Score: ${playerPoints}:${computerPoints}`;
+        finalWinner.textContent = winner(playerPoints, computerPoints);
+    });
+    paper.addEventListener('click', () => {
+        result.textContent = playRound('paper', getComputerChoice());
+        score.textContent = `Score: ${playerPoints}:${computerPoints}`;
+        console.log(winner(playerPoints, computerPoints));
+        finalWinner.textContent = winner(playerPoints, computerPoints);
+    });
+    scissors.addEventListener('click', () => {
+        result.textContent = playRound('scissors', getComputerChoice());
+        score.textContent = `Score: ${playerPoints}:${computerPoints}`;
+        console.log(winner(playerPoints, computerPoints));
+        finalWinner.textContent = winner(playerPoints, computerPoints);
+    });
+    
+
+
+
+
+
+
 
 
 
