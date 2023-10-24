@@ -19,28 +19,40 @@ function playRound(playerSelection, computerSelection){
         (playerSelection === "scissors" && computerSelection === "paper")
     ) {
         result = `You win! ${playerSelection} beats ${computerSelection}.`;
+        playerPoints += 1;
     } else {
         result = `You lose! ${computerSelection} beats ${playerSelection}.`;
+        computerPoints += 1;
     }
 
     return result;
 }
 
 
+
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
 const result = document.querySelector('#results');
+const score = document.querySelector('#score');
+
+let playerPoints = 0;
+let computerPoints = 0;
 
 rock.addEventListener('click',() => {
     result.textContent = playRound('rock', getComputerChoice());
+    score.textContent = `Score: ${playerPoints}:${computerPoints}`
 });
 paper.addEventListener('click', () => {
     result.textContent = playRound('paper', getComputerChoice());
+    score.textContent = `Score: ${playerPoints}:${computerPoints}`
 });
 scissors.addEventListener('click', () => {
     result.textContent = playRound('scissors', getComputerChoice());
+    score.textContent = `Score: ${playerPoints}:${computerPoints}`
 });
+
+
 
 
 
