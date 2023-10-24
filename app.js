@@ -5,33 +5,50 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection){
+    let result = "";
     playerSelection = playerSelection.toLowerCase();
     if (!choices.includes(playerSelection)) {
-        return "Invalid choice. Please choose rock, paper, or scissors.";
+        result = "Invalid choice. Please choose rock, paper, or scissors.";
     }
 
     if (playerSelection === computerSelection) {
-        return "It's a tie.";
+        result = "It's a tie.";
     } else if (
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        return `You win! ${playerSelection} beats ${computerSelection}.`;
+        result = `You win! ${playerSelection} beats ${computerSelection}.`;
     } else {
-        return `You lose! ${computerSelection} beats ${playerSelection}.`;
+        result = `You lose! ${computerSelection} beats ${playerSelection}.`;
     }
+
+    return result;
 }
 
-function game() {
-    for (i = 0; i < 5; i++) {
-        const playerSelection = prompt("Enter your choice: rock, paper, or scissors");
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    }
-}
 
-game();
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const result = document.querySelector('#results');
+
+rock.addEventListener('click',() => {
+    result.textContent = playRound('rock', getComputerChoice());
+});
+paper.addEventListener('click', () => {
+    result.textContent = playRound('paper', getComputerChoice());
+});
+scissors.addEventListener('click', () => {
+    result.textContent = playRound('scissors', getComputerChoice());
+});
+
+
+
+
+
+
+
+
 
 
 
